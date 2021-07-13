@@ -14,16 +14,16 @@ using std::vector;
 
 namespace biocpp {
 
-GeneMaterial::GeneMaterial(string sequence, string mol_type) {
+MolSeq::MolSeq(string sequence, string mol_type) {
   sequence_ = sequence;
   mol_type_ = mol_type;
 }
 
-string GeneMaterial::get_sequence() { return sequence_; }
+string MolSeq::get_sequence() { return sequence_; }
 
-string GeneMaterial::get_mol_type() { return mol_type_; }
+string MolSeq::get_mol_type() { return mol_type_; }
 
-GeneMaterial GeneMaterial::transcribe() {
+MolSeq MolSeq::transcribe() {
   using std::replace;
 
   if (mol_type_ != "DNA") {
@@ -33,10 +33,10 @@ GeneMaterial GeneMaterial::transcribe() {
   string rna_sequence = sequence_, rna_mol_type = "RNA";
   replace(rna_sequence.begin(), rna_sequence.end(), 'T', 'U');
 
-  return GeneMaterial(rna_sequence, rna_mol_type);
+  return MolSeq(rna_sequence, rna_mol_type);
 }
 
-GeneMaterial GeneMaterial::translate() {
+MolSeq MolSeq::translate() {
   using std::map;
 
   if (mol_type_ == "PROT") {
@@ -83,7 +83,7 @@ GeneMaterial GeneMaterial::translate() {
     prot_sequence += codon_table.find(sequence_.substr(idx * 3, 3))->second;
   }
 
-  return GeneMaterial(prot_sequence, prot_mol_type);
+  return MolSeq(prot_sequence, prot_mol_type);
 }
 
 string _complement(string* mol_type, string* sequence) {
@@ -120,20 +120,20 @@ string _complement(string* mol_type, string* sequence) {
   return complement_sequence;
 }
 
-GeneMaterial GeneMaterial::complement() {
-  return GeneMaterial(_complement(&mol_type_, &sequence_), mol_type_);
+MolSeq MolSeq::complement() {
+  return MolSeq(_complement(&mol_type_, &sequence_), mol_type_);
 }
 
-GeneMaterial GeneMaterial::reverse_complement() {
+MolSeq MolSeq::reverse_complement() {
   using std::reverse;
 
   string rc_sequence = _complement(&mol_type_, &sequence_);
   reverse(rc_sequence.begin(), rc_sequence.end());
 
-  return GeneMaterial(rc_sequence, mol_type_);
+  return MolSeq(rc_sequence, mol_type_);
 }
 
-int* GeneMaterial::count_nucleotide() {
+int* MolSeq::count_nucleotide() {
   using std::count;
 
   if (mol_type_ == "PROT") {
@@ -161,7 +161,7 @@ int* GeneMaterial::count_nucleotide() {
   return nucleotide_counts;
 }
 
-float GeneMaterial::calc_gc_content() {
+float MolSeq::calc_gc_content() {
   using std::count;
 
   int g_count = count(sequence_.begin(), sequence_.end(), 'G');
@@ -170,7 +170,7 @@ float GeneMaterial::calc_gc_content() {
   return (g_count + c_count) / static_cast<float>(sequence_.length());
 }
 
-vector<int> GeneMaterial::find_motif(string motif) {
+vector<int> MolSeq::find_motif(string motif) {
   vector<int> motif_idxes;
 
   for (int idx = 0; idx < sequence_.length() - motif.length() + 1; idx++) {

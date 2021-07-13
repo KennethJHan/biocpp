@@ -11,19 +11,19 @@ using std::vector;
 
 namespace biocpp {
 
-class GeneMaterial {
+class MolSeq {
  private:
   string sequence_;
   string mol_type_;
 
  public:
-  explicit GeneMaterial(string sequence, string mol_type);
+  explicit MolSeq(string sequence, string mol_type);
   string get_sequence();
   string get_mol_type();
-  GeneMaterial transcribe();
-  GeneMaterial translate();
-  GeneMaterial complement();
-  GeneMaterial reverse_complement();
+  MolSeq transcribe();
+  MolSeq translate();
+  MolSeq complement();
+  MolSeq reverse_complement();
   int* count_nucleotide();
   float calc_gc_content();
   vector<int> find_motif(string motif);
