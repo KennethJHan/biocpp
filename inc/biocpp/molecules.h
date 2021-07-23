@@ -18,6 +18,7 @@ class MolSeq {
 
  public:
   explicit MolSeq(string sequence, string mol_type);
+  // TODO(panda5176): mol_type to char
   string get_sequence();
   string get_mol_type();
   MolSeq transcribe();
