@@ -14,23 +14,24 @@ using std::vector;
 
 namespace biocpp {
 
-MolSeq::MolSeq(string sequence, string mol_type) {
+MolSeq::MolSeq(string sequence, char mol_type) {
   sequence_ = sequence;
   mol_type_ = mol_type;
 }
 
 string MolSeq::get_sequence() { return sequence_; }
 
-string MolSeq::get_mol_type() { return mol_type_; }
+char MolSeq::get_mol_type() { return mol_type_; }
 
 MolSeq MolSeq::transcribe() {
   using std::replace;
 
-  if (mol_type_ != "DNA") {
+  if (mol_type_ != 'D') {
     throw 1;
   }
 
-  string rna_sequence = sequence_, rna_mol_type = "RNA";
+  string rna_sequence = sequence_;
+  char rna_mol_type = 'R';
   replace(rna_sequence.begin(), rna_sequence.end(), 'T', 'U');
 
   return MolSeq(rna_sequence, rna_mol_type);
@@ -39,12 +40,12 @@ MolSeq MolSeq::transcribe() {
 MolSeq MolSeq::translate() {
   using std::map;
 
-  if (mol_type_ == "PROT") {
+  if (mol_type_ == 'P') {
     throw 1;
   }
 
   map<string, char> codon_table;
-  if (mol_type_ == "DNA") {
+  if (mol_type_ == 'D') {
     codon_table = {
         {"AAA", 'K'}, {"AAG", 'K'}, {"AAC", 'N'}, {"AAT", 'N'}, {"AGA", 'R'},
         {"AGG", 'R'}, {"AGC", 'S'}, {"AGT", 'S'}, {"ACA", 'T'}, {"ACG", 'T'},
@@ -60,7 +61,7 @@ MolSeq MolSeq::translate() {
         {"GGT", 'G'}, {"GCA", 'A'}, {"GCG", 'A'}, {"GCC", 'A'}, {"GCT", 'A'},
         {"GTA", 'V'}, {"GTG", 'V'}, {"GTC", 'V'}, {"GTT", 'V'},
     };
-  } else if (mol_type_ == "RNA") {
+  } else if (mol_type_ == 'R') {
     codon_table = {
         {"AAA", 'K'}, {"AAG", 'K'}, {"AAC", 'N'}, {"AAU", 'N'}, {"AGA", 'R'},
         {"AGG", 'R'}, {"AGC", 'S'}, {"AGU", 'S'}, {"ACA", 'T'}, {"ACG", 'T'},
@@ -78,7 +79,8 @@ MolSeq MolSeq::translate() {
     };
   }
 
-  string prot_sequence, prot_mol_type = "PROT";
+  string prot_sequence;
+  char prot_mol_type = 'P';
   for (int idx = 0; idx < sequence_.length() / 3; idx++) {
     prot_sequence += codon_table.find(sequence_.substr(idx * 3, 3))->second;
   }
@@ -86,8 +88,8 @@ MolSeq MolSeq::translate() {
   return MolSeq(prot_sequence, prot_mol_type);
 }
 
-string _complement(string* mol_type, string* sequence) {
-  if (*mol_type == "PROT") {
+string _complement(char mol_type, string* sequence) {
+  if (mol_type == 'P') {
     throw 1;
   }
 
@@ -95,9 +97,9 @@ string _complement(string* mol_type, string* sequence) {
   for (int idx = 0; idx < (*sequence).length(); idx++) {
     switch ((*sequence)[idx]) {
       case 'A': {
-        if (*mol_type == "DNA")
+        if (mol_type == 'D')
           complement_sequence += 'T';
-        else if (*mol_type == "RNA")
+        else if (mol_type == 'R')
           complement_sequence += 'U';
         break;
       }
@@ -121,13 +123,13 @@ string _complement(string* mol_type, string* sequence) {
 }
 
 MolSeq MolSeq::complement() {
-  return MolSeq(_complement(&mol_type_, &sequence_), mol_type_);
+  return MolSeq(_complement(mol_type_, &sequence_), mol_type_);
 }
 
 MolSeq MolSeq::reverse_complement() {
   using std::reverse;
 
-  string rc_sequence = _complement(&mol_type_, &sequence_);
+  string rc_sequence = _complement(mol_type_, &sequence_);
   reverse(rc_sequence.begin(), rc_sequence.end());
 
   return MolSeq(rc_sequence, mol_type_);
@@ -136,20 +138,20 @@ MolSeq MolSeq::reverse_complement() {
 int* MolSeq::count_nucleotide() {
   using std::count;
 
-  if (mol_type_ == "PROT") {
+  if (mol_type_ == 'P') {
     throw 1;
   }
 
   static int nucleotide_counts[4];
   string::iterator begin = sequence_.begin(), end = sequence_.end();
-  if (mol_type_ == "DNA") {
+  if (mol_type_ == 'D') {
     static int nucleotide_counts[4] = {
         count(begin, end, 'A'),
         count(begin, end, 'C'),
         count(begin, end, 'G'),
         count(begin, end, 'T'),
     };
-  } else if (mol_type_ == "RNA") {
+  } else if (mol_type_ == 'R') {
     static int nucleotide_counts[4] = {
         count(begin, end, 'A'),
         count(begin, end, 'C'),

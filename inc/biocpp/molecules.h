@@ -14,13 +14,12 @@ namespace biocpp {
 class MolSeq {
  private:
   string sequence_;
-  string mol_type_;
+  char mol_type_;
 
  public:
-  explicit MolSeq(string sequence, string mol_type);
-  // TODO(panda5176): mol_type to char
+  explicit MolSeq(string sequence, char mol_type);
   string get_sequence();
-  string get_mol_type();
+  char get_mol_type();
   MolSeq transcribe();
   MolSeq translate();
   MolSeq complement();
