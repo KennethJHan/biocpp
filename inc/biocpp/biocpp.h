@@ -1,6 +1,4 @@
 // Copyright 2021 panda5176
-// BioCpp: Bioinformatics Library for C++
-// https://github.com/panda5176/biocpp
 
 #ifndef BIOCPP_INC_BIOCPP_BIOCPP_H_
 #define BIOCPP_INC_BIOCPP_BIOCPP_H_

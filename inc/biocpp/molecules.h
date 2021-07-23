@@ -12,6 +12,8 @@ using std::vector;
 namespace biocpp {
 
 class MolSeq {
+  // TODO(panda5176): ostream& operator<< overriding
+  // TODO(panda5176): operator[], operator ==/!=, slicing overriding
  private:
   string sequence_;
   char mol_type_;
@@ -21,8 +23,10 @@ class MolSeq {
   string get_sequence();
   char get_mol_type();
   MolSeq transcribe();
+  // TODO(panda5176): back_transcribe()
   MolSeq translate();
   MolSeq complement();
+  // TODO(panda5176): reverse()
   MolSeq reverse_complement();
   int* count_nucleotide();
   float calc_gc_content();

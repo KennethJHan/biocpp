@@ -10,6 +10,7 @@ using std::string;
 namespace biocpp {
 
 int calc_hamming_dist(string str1, string str2);
+// TODO(panda5176): MSA
 
 }  // namespace biocpp
 
