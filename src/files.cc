@@ -1,11 +1,11 @@
 // Copyright 2021 panda5176
 
+#include "biocpp/files.h"
+
 #include <fstream>
 #include <map>
 #include <string>
 #include <vector>
-
-#include "biocpp/io.h"
 
 using std::map;
 using std::string;

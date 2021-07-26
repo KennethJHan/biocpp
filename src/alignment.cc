@@ -1,8 +1,8 @@
 // Copyright 2021 panda5176
 
-#include <string>
+#include "biocpp/alignment.h"
 
-#include "biocpp/algorithms.h"
+#include <string>
 
 using std::string;
 

@@ -1,12 +1,12 @@
 // Copyright 2021 panda5176
 
+#include "biocpp/mol_seq.h"
+
 #include <algorithm>
 #include <exception>
 #include <map>
 #include <string>
 #include <vector>
-
-#include "biocpp/molecules.h"
 
 using std::exception;
 using std::string;

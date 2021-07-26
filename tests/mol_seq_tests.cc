@@ -1,6 +1,6 @@
 // Copyright 2021 panda5176
 
-#include <biocpp/molecules.h>
+#include <biocpp/mol_seq.h>
 #include <gtest/gtest.h>
 
 using biocpp::MolSeq;

@@ -1,7 +1,7 @@
 // Copyright 2021 panda5176
 
-#ifndef BIOCPP_INC_BIOCPP_MOLECULES_H_
-#define BIOCPP_INC_BIOCPP_MOLECULES_H_
+#ifndef BIOCPP_INC_BIOCPP_MOL_SEQ_H_
+#define BIOCPP_INC_BIOCPP_MOL_SEQ_H_
 
 #include <string>
 #include <vector>
@@ -35,4 +35,4 @@ class MolSeq {
 
 }  // namespace biocpp
 
-#endif  // BIOCPP_INC_BIOCPP_MOLECULES_H_
+#endif  // BIOCPP_INC_BIOCPP_MOL_SEQ_H_

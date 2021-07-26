@@ -13,14 +13,9 @@ set(CMAKE_CXX_STANDARD 11)
 
 ### src
 
-add_subdirectory(src)
-
-set(LIBRARIES algorithms io molecules)
-foreach(LIBRARY ${LIBRARIES})
-  set(LIB_OBJS ${LIB_OBJS} $<TARGET_OBJECTS:${LIBRARY}>)
-endforeach()
-
-add_library(${PROJECT_NAME} STATIC ${LIB_OBJS})
+file(GLOB SOURCES src/*.cc)
+add_library(${PROJECT_NAME} OBJECT ${SOURCES})
+target_include_directories(${PROJECT_NAME} PUBLIC inc)
 
 
 ### tests
@@ -35,7 +30,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 set(TEST ${PROJECT_NAME}_test)
-file(GLOB TESTS tests/*.cc tests/*/*.cc)
+file(GLOB TESTS tests/*.cc)
 add_executable(${TEST} ${TESTS})
 target_include_directories(${TEST} PUBLIC inc)
 target_link_libraries(${TEST} PUBLIC gtest ${PROJECT_NAME})
