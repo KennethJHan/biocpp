@@ -2,7 +2,11 @@
 Bioinformatics Library for C++
 
 ## Installation
-TODO
+```bash
+$ cmake CMakeLists.txt -B {folder to build} (-G "MinGW Makefiles")
+$ make
+$ {folder to build}/biocpp_test(.exe)
+```
 
 ## WIKI
 TODO
