@@ -23,7 +23,7 @@ class MolSeq {
   string get_sequence();
   char get_mol_type();
   MolSeq transcribe();
-  // TODO(panda5176): back_transcribe()
+  MolSeq back_transcribe();
   MolSeq translate();
   MolSeq complement();
   // TODO(panda5176): reverse()

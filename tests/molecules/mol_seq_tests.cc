@@ -20,6 +20,11 @@ TEST(mol_seq, transcribe) {
   EXPECT_EQ(dna.transcribe().get_sequence(), "AUGUAA");
 }
 
+TEST(mol_seq, back_transcribe) {
+  MolSeq dna = MolSeq("AUGUAA", 'R');
+  EXPECT_EQ(dna.back_transcribe().get_sequence(), "ATGTAA");
+}
+
 TEST(mol_seq, translate) {
   MolSeq dna = MolSeq("ATGTAA", 'D');
   EXPECT_EQ(dna.translate().get_sequence(), "M*");

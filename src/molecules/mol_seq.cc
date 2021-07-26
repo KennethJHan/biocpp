@@ -31,10 +31,22 @@ MolSeq MolSeq::transcribe() {
   }
 
   string rna_sequence = sequence_;
-  char rna_mol_type = 'R';
   replace(rna_sequence.begin(), rna_sequence.end(), 'T', 'U');
 
-  return MolSeq(rna_sequence, rna_mol_type);
+  return MolSeq(rna_sequence, 'R');
+}
+
+MolSeq MolSeq::back_transcribe() {
+  using std::replace;
+
+  if (mol_type_ != 'R') {
+    throw 1;
+  }
+
+  string dna_sequence = sequence_;
+  replace(dna_sequence.begin(), dna_sequence.end(), 'U', 'T');
+
+  return MolSeq(dna_sequence, 'D');
 }
 
 MolSeq MolSeq::translate() {
