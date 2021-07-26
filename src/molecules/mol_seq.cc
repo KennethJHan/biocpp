@@ -138,6 +138,15 @@ MolSeq MolSeq::complement() {
   return MolSeq(_complement(mol_type_, &sequence_), mol_type_);
 }
 
+MolSeq MolSeq::reverse() {
+  using std::reverse;
+
+  string reverse_sequence = sequence_;
+  reverse(reverse_sequence.begin(), reverse_sequence.end());
+
+  return MolSeq(reverse_sequence, mol_type_);
+}
+
 MolSeq MolSeq::reverse_complement() {
   using std::reverse;
 

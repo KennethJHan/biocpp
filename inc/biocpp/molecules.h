@@ -26,7 +26,7 @@ class MolSeq {
   MolSeq back_transcribe();
   MolSeq translate();
   MolSeq complement();
-  // TODO(panda5176): reverse()
+  MolSeq reverse();
   MolSeq reverse_complement();
   int* count_nucleotide();
   float calc_gc_content();

@@ -35,6 +35,11 @@ TEST(mol_seq, complement) {
   EXPECT_EQ(dna.complement().get_sequence(), "TACATT");
 }
 
+TEST(mol_seq, reverse) {
+  MolSeq dna = MolSeq("ATGTAA", 'D');
+  EXPECT_EQ(dna.reverse().get_sequence(), "AATGTA");
+}
+
 TEST(mol_seq, reverse_complement) {
   MolSeq dna = MolSeq("ATGTAA", 'D');
   EXPECT_EQ(dna.reverse_complement().get_sequence(), "TTACAT");
