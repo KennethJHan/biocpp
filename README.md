@@ -7,9 +7,7 @@ $ cmake CMakeLists.txt -B {folder to build} (-G "MinGW Makefiles")
 $ make
 $ {folder to build}/biocpp_test(.exe)
 ```
-
-## WIKI
-TODO
+See [WIKI](https://github.com/panda5176/biocpp/wiki) for more information
 
 ## References
 1. [GoogleTest](https://google.github.io/googletest/)
