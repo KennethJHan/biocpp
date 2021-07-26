@@ -18,6 +18,9 @@ map<string, string> read_fasta(string fasta_path);
 // TODO(panda5176): write_fasta() option
 // TODO(panda5176): compressed=True option
 // TODO(panda5176): newick
+// TODO(panda5176): clustal
+// TODO(panda5176): csv,tsv
+// TODO(panda5176): .gb
 
 }  // namespace biocpp
 

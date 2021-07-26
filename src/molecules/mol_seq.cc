@@ -146,17 +146,17 @@ int* MolSeq::count_nucleotide() {
   string::iterator begin = sequence_.begin(), end = sequence_.end();
   if (mol_type_ == 'D') {
     static int nucleotide_counts[4] = {
-        count(begin, end, 'A'),
-        count(begin, end, 'C'),
-        count(begin, end, 'G'),
-        count(begin, end, 'T'),
+        static_cast<int>(count(begin, end, 'A')),
+        static_cast<int>(count(begin, end, 'C')),
+        static_cast<int>(count(begin, end, 'G')),
+        static_cast<int>(count(begin, end, 'T')),
     };
   } else if (mol_type_ == 'R') {
     static int nucleotide_counts[4] = {
-        count(begin, end, 'A'),
-        count(begin, end, 'C'),
-        count(begin, end, 'G'),
-        count(begin, end, 'U'),
+        static_cast<int>(count(begin, end, 'A')),
+        static_cast<int>(count(begin, end, 'C')),
+        static_cast<int>(count(begin, end, 'G')),
+        static_cast<int>(count(begin, end, 'U')),
     };
   }
 
